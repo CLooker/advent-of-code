@@ -1,6 +1,8 @@
 const curry = fn => (...args) =>
   args.length >= fn.length ? fn(...args) : curry(fn.bind(null, ...args));
 
+const first = items => items[0];
+
 const memoize = fn => {
   let cache = {};
 
@@ -20,6 +22,7 @@ const pipe = (...fns) => data =>
 
 module.exports = {
   curry,
+  first,
   memoize,
   pipe
 };
