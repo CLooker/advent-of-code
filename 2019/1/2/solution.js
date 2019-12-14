@@ -1,4 +1,4 @@
-const massToFuel = require("../massToFuel");
+const massToFuel = require('../massToFuel');
 
 const massToFuelRecur = (mass, fuel = 0) =>
   mass <= 0

@@ -1,4 +1,4 @@
-const { memoize, pipe } = require("../utils");
+const { memoize, pipe } = require('../../utils');
 
 const massToFuel = mass =>
   pipe(

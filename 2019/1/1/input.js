@@ -99,7 +99,7 @@ module.exports = `
 84400
 101217
 116287`
-  .replace(/\s/g, ",")
-  .split(",")
+  .replace(/\s/g, ',')
+  .split(',')
   .filter(Boolean)
   .map(str => +str);
