@@ -1,4 +1,4 @@
-const masses = require('./input');
+const masses = require('../input');
 const getTotalFuel = require('./solution');
 
 describe('solution', () => {
