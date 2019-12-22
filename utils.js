@@ -3,6 +3,10 @@ const curry = fn => (...args) =>
 
 const first = items => items[0];
 
+const last = items => items[items.length - 1];
+
+const logJson = item => console.log(JSON.stringify(item, null, 2));
+
 const memoize = fn => {
   let cache = {};
 
@@ -23,6 +27,8 @@ const pipe = (...fns) => data =>
 module.exports = {
   curry,
   first,
+  last,
+  logJson,
   memoize,
   pipe
 };
