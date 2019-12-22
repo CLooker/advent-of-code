@@ -7,7 +7,10 @@ const year = '2019';
 const solutionDirPath = path.join(__dirname, '..', year);
 
 for (let dayDate = 4; dayDate <= 25; dayDate++) {
-  const dayDateDirPath = path.join(solutionDirPath, dayDate.toString());
+  const dayDateDirPath = path.join(
+    solutionDirPath,
+    dayDate < 10 ? '0' + dayDate.toString() : dayDate.toString()
+  );
 
   const doesDayDateDirExist = fs.existsSync(dayDateDirPath);
   if (!doesDayDateDirExist) fs.mkdirSync(dayDateDirPath);
