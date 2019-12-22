@@ -1,5 +1,5 @@
-const solution = require('./solution');
-const input = require('../input');
+const solution = require('./2019.3.2.solution');
+const input = require('../2019.3.input');
 
 describe('solution', () => {
   it('calculates the solution', () => {
