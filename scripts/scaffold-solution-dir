@@ -55,7 +55,7 @@ for (let dayDate = 4; dayDate <= 25; dayDate++) {
       fs.writeFileSync(
         solutionSpecPath,
         `const solution = require('./${year}.${dayDate}.${problemPortion}.solution.js');
-  const input = require('./${year}.${dayDate}.${problemPortion}.solution.spec.js');
+  const input = require('../${year}.${dayDate}.input.js');
   
   describe('${year}.${dayDate}.${problemPortion}.solution', () => {
     it('solves the problem', () => {
