@@ -24,11 +24,25 @@ const memoize = fn => {
 const pipe = (...fns) => data =>
   fns.reduce((updatedData, fn) => fn(updatedData), data);
 
+const range = curry((start, end) => {
+  let ints = [];
+
+  for (let int = start; ints.length <= Math.abs(start - end); ) {
+    ints.push(start < end ? int++ : int--);
+  }
+
+  return ints;
+});
+
+const trace = curry((label, item) => console.log(label + ': ' + item) || item);
+
 module.exports = {
   curry,
   first,
   last,
   logJson,
   memoize,
-  pipe
+  pipe,
+  range,
+  trace
 };
