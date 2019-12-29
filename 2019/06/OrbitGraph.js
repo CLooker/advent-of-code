@@ -1,26 +1,64 @@
 const Graph = require('./Graph');
 
+const findIntersection = (arrs = []) => {
+  if (length in arrs && arrs.length < 2) return;
+
+  for (let i = 1; i < arrs.length; i++) {
+    const arr = arrs[i];
+    const intersection = arr.find(item => arrs.every(ar => ar.includes(item)));
+    if (intersection !== -1) return intersection;
+  }
+};
+
 const OrbitGraph = (orbitData = []) => {
-  const orbitGraph = orbitData.reduce((accum, orbitDatum) => {
+  const orbitGraph = orbitData.reduce((graph, orbitDatum) => {
     const [orbitee, orbiter] = orbitDatum.split(')');
-    accum.addEdge(orbitee, orbiter);
-    return accum;
+    graph.addEdge(orbitee, orbiter);
+    return graph;
   }, Graph());
 
   return {
     ...orbitGraph,
     getOrbitsTotal: () =>
-      orbitGraph.values().reduce((accum, vertices) => {
-        (function walk(currVertices) {
-          currVertices.forEach(vertex => {
-            accum++;
-            const nextVertices = orbitGraph.get(vertex);
-            walk(nextVertices);
+      orbitGraph.values().reduce((orbitsTotal, edges) => {
+        (function walk(currEdges) {
+          currEdges.forEach(vertex => {
+            orbitsTotal++;
+            const nextEdges = orbitGraph.get(vertex);
+            walk(nextEdges);
           });
-        })(vertices);
+        })(edges);
 
-        return accum;
-      }, 0)
+        return orbitsTotal;
+      }, 0),
+    getOrbitalTransfersTotal: (orbitItemNameA, orbitItemNameB) => {
+      if (!orbitItemNameA || !orbitItemNameB) return 0;
+
+      const vertexToRootPaths = [orbitItemNameA, orbitItemNameB].map(vertex => {
+        const root = 'COM';
+        let vertexToRootPath = [vertex];
+        let lastStop = vertex;
+
+        while (lastStop !== root) {
+          const nextStop = orbitGraph.keys().find(v => {
+            return orbitGraph.get(v).has(lastStop);
+          });
+
+          vertexToRootPath.push(nextStop);
+          lastStop = nextStop;
+        }
+
+        return vertexToRootPath;
+      });
+
+      const commonVertex = findIntersection(vertexToRootPaths);
+
+      return vertexToRootPaths.reduce(
+        (accum, vertexToRootPath) =>
+          accum + vertexToRootPath.indexOf(commonVertex) - 1,
+        0
+      );
+    }
   };
 };
 

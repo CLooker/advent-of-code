@@ -12,6 +12,8 @@ const Graph = () => {
 
   const contains = vertex => vertex in graph;
 
+  const entries = () => Object.entries(graph);
+
   const get = vertex => graph[vertex];
 
   const keys = () => Object.keys(graph);
@@ -28,6 +30,7 @@ const Graph = () => {
     addEdge,
     addVertex,
     contains,
+    entries,
     get,
     keys,
     toJson,
