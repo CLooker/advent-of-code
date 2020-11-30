@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+const dayDateStart = 0;
+const dayDateEnd = 0;
+const year = '2019';
+const solutionDirPath = path.join(__dirname, '..');
+
+for (let dayDate = dayDateStart; dayDate <= dayDateEnd; dayDate++) {
+  const dayDateDirPath = path.join(
+    solutionDirPath,
+    dayDate < 10 ? '0' + dayDate.toString() : dayDate.toString()
+  );
+
+  const doesDayDateDirExist = fs.existsSync(dayDateDirPath);
+  if (!doesDayDateDirExist) fs.mkdirSync(dayDateDirPath);
+
+  const inputFilePath = path.join(
+    dayDateDirPath,
+    `${year}.${dayDate}.input.js`
+  );
+  const doesInputFileExist = fs.existsSync(inputFilePath);
+  if (!doesInputFileExist) {
+    fs.writeFileSync(inputFilePath, `module.exports = '';`);
+  }
+
+  for (let problemPortion = 1; problemPortion <= 2; problemPortion++) {
+    const problemPortionDirPath = path.join(
+      dayDateDirPath,
+      problemPortion.toString()
+    );
+
+    const doesProblemPortionDirExist = fs.existsSync(problemPortionDirPath);
+    if (!doesProblemPortionDirExist) fs.mkdirSync(problemPortionDirPath);
+
+    const solutionFilePath = path.join(
+      problemPortionDirPath,
+      `${year}.${dayDate}.${problemPortion}.solution.js`
+    );
+    const doesSolutionFileExist = fs.existsSync(solutionFilePath);
+    if (!doesSolutionFileExist) {
+      fs.writeFileSync(
+        solutionFilePath,
+        `const solution = () => {};\n\nmodule.exports = solution;`
+      );
+    }
+  }
+}
