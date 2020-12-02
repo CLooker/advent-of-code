@@ -1,7 +1,7 @@
 package com.clooker.solution.day.one;
 
-import common.Solution;
-import common.Utils;
+import com.clooker.solution.common.Solution;
+import com.clooker.solution.common.Utils;
 
 import java.util.List;
 import java.util.Map;
@@ -17,29 +17,26 @@ public final class PartTwoSolution {
             () -> {
               final Map<Long, Long> expenseToFrequency = Utils.elementToFrequency(expenses);
 
-              final List<Long> matches =
-                  expenses.parallelStream()
-                      .map(
-                          expense -> {
-                            var match =
-                                expenses.parallelStream()
-                                    .filter(
-                                        e2 -> {
-                                          var missingExpense = 2020 - expense - e2;
-                                          return expenseToFrequency.containsKey(missingExpense);
-                                        })
-                                    .findFirst()
-                                    .orElse(null);
-
-                            return match == null
-                                ? null
-                                : List.of(expense, match, 2020 - expense - match);
-                          })
-                      .filter(Objects::nonNull)
-                      .findFirst()
-                      .orElse(List.of());
-
-              return matches.parallelStream().reduce((l1, l2) -> l1 * l2).orElse(null);
+              return expenses.parallelStream()
+                  .map(
+                      expense ->
+                          expenses.parallelStream()
+                              .map(
+                                  secondExpense -> {
+                                    var thirdExpense = 2020 - expense - secondExpense;
+                                    return expenseToFrequency.containsKey(thirdExpense)
+                                        ? List.of(expense, secondExpense, thirdExpense)
+                                        : null;
+                                  })
+                              .filter(Objects::nonNull)
+                              .findFirst()
+                              .orElse(null))
+                  .filter(Objects::nonNull)
+                  .findFirst()
+                  .flatMap(
+                      expensesThatSumTo2020 ->
+                          expensesThatSumTo2020.parallelStream().reduce((l1, l2) -> l1 * l2))
+                  .orElse(null);
             })
         .build();
   }

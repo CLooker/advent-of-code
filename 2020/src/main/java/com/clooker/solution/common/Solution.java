@@ -1,4 +1,4 @@
-package common;
+package com.clooker.solution.common;
 
 import com.google.common.base.Preconditions;
 import org.immutables.value.Value;
