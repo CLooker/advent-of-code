@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public final class Solutions {
+final class Solutions {
 
   private static final Path inputPath = Paths.get("src", "main", "resources", "1.input.txt");
 

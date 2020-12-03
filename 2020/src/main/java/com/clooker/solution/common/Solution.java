@@ -28,7 +28,7 @@ public abstract class Solution<E> {
   abstract Supplier<E> solutionSupplier();
 
   @Value.Check
-  protected void check() {
+  protected final void check() {
     Preconditions.checkState(
         dayNumber() >= 1 && dayNumber() <= 25, "dayNumber must be between 0 and 25");
   }
@@ -37,7 +37,7 @@ public abstract class Solution<E> {
     logger.info("solution for day " + dayNumber() + ", part " + part() + ": " + solution());
   }
 
-  public E solution() {
+  protected final E solution() {
     return solutionSupplier().get();
   }
 }
