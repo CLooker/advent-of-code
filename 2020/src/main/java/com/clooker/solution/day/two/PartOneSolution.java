@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 final class PartOneSolution {
 
   public static Solution<Long> solution() {
-    return Solution.<Long>builder()
+    return com.clooker.solution.common.Solution.<Long>builder()
         .dayNumber(2)
         .part(Solution.Part.ONE)
         .solutionSupplier(

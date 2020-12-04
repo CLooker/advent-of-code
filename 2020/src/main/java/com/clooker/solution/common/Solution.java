@@ -7,7 +7,6 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 @Value.Immutable
-@Value.Style(visibility = Value.Style.ImplementationVisibility.PUBLIC)
 public abstract class Solution<E> {
 
   private static final Logger logger = Logger.getLogger(Solution.class.getName());
