@@ -1,5 +1,6 @@
 package com.clooker.solution.day.two;
 
+import com.clooker.solution.common.Validator;
 import org.immutables.value.Value;
 
 @Value.Immutable

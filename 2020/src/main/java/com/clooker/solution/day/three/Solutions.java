@@ -6,12 +6,14 @@ import com.clooker.solution.common.Utils;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 final class Solutions {
 
   private static final Path inputPath = Paths.get("src", "main", "resources", "3.input.txt");
 
-  private static final List<String> landscapeLines = Utils.parseInput(inputPath);
+  private static final List<String> landscapeLines =
+      Utils.parseInput(inputPath).collect(Collectors.toList());
 
   private static final Solution<Long> partOneSolution =
       Solution.<Long>builder()

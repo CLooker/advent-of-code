@@ -1,6 +1,7 @@
 package com.clooker.solution.day.two;
 
 import com.clooker.solution.common.Solution;
+import com.clooker.solution.common.Validator;
 
 import java.util.regex.Pattern;
 
