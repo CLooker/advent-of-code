@@ -10,13 +10,11 @@ import java.util.stream.Collectors;
 final class Solutions {
 
   public static final List<String> inputFileLines =
-    Utils.parseInput(Paths.get("src", "main", "resources", "8.input.test.txt"))
-      .collect(Collectors.toList());
+      Utils.parseInput(Paths.get("src", "main", "resources", "8.input.txt"))
+          .collect(Collectors.toList());
 
   public static void main(String[] args) {
-    List.of(
-//      PartOneSolution.solution(inputFileLines),
-      PartTwoSolution.solution(inputFileLines)
-      ).forEach(Solution::logSolution);
+    List.of(PartOneSolution.solution(inputFileLines), PartTwoSolution.solution(inputFileLines))
+        .forEach(Solution::logSolution);
   }
 }
