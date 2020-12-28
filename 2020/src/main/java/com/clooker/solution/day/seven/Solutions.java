@@ -1,5 +1,6 @@
 package com.clooker.solution.day.seven;
 
+import com.clooker.solution.common.Solution;
 import com.clooker.solution.common.Utils;
 
 import java.nio.file.Paths;
@@ -13,6 +14,7 @@ public class Solutions {
           .collect(Collectors.toList());
 
   public static void main(String[] args) {
-    PartOneSolution.solution(inputFileLines).logSolution();
+    List.of(PartOneSolution.solution(inputFileLines), PartTwoSolution.solution((inputFileLines)))
+        .forEach(Solution::logSolution);
   }
 }

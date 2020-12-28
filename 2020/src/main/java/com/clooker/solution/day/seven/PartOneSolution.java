@@ -3,7 +3,6 @@ package com.clooker.solution.day.seven;
 import com.clooker.solution.common.Solution;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 final class PartOneSolution {
@@ -14,18 +13,11 @@ final class PartOneSolution {
         .part(Solution.Part.ONE)
         .solutionSupplier(
             () -> {
-              final BagColor bagColorToContain =
-                  BagColor.builder().colorModifier("shiny").color("gold").build();
-
+              final Bag bagToContain = Bag.builder().colorModifier("shiny").color("gold").build();
               final BagRules bagRules = BagRules.from(inputFileLines);
-
+              
               return bagRules.containers().parallelStream()
-                  .map(
-                      container ->
-                          bagRules.containees(container).contains(bagColorToContain)
-                              ? container
-                              : null)
-                  .filter(Objects::nonNull)
+                  .filter(container -> bagRules.walkContainees(container).contains(bagToContain))
                   .collect(Collectors.toSet())
                   .size();
             })

@@ -4,10 +4,10 @@ import org.immutables.value.Value;
 
 @Value.Immutable
 @Value.Style(typeImmutable = "*VO")
-public interface BagColor {
+public interface Bag {
 
-  static BagColorVO.Builder builder() {
-    return BagColorVO.builder();
+  static BagVO.Builder builder() {
+    return BagVO.builder();
   }
 
   String colorModifier();
