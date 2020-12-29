@@ -2,7 +2,7 @@ package com.clooker.solution.day.seven;
 
 import com.clooker.solution.common.Solution;
 
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 final class PartOneSolution {

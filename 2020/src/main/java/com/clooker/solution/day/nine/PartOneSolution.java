@@ -8,19 +8,19 @@ import java.util.stream.Collectors;
 
 final class PartOneSolution {
 
-  public static Solution<Long> solution(List<String> inputFileLines, int preambleLength) {
+  public static Solution<Long> solution(List<Long> input, int preambleLength) {
     return Solution.<Long>builder()
-        .dayNumber(8)
+        .dayNumber(9)
         .part(Solution.Part.ONE)
         .solutionSupplier(
             () -> {
               List<Long> previousNums =
-                  toLongList(inputFileLines).stream()
+                  input.stream()
                       .limit(preambleLength)
                       .collect(Collectors.toList());
 
               for (Long targetSum :
-                  toLongList(inputFileLines).stream()
+                  input.stream()
                       .skip(preambleLength)
                       .collect(Collectors.toList())) {
 
@@ -38,10 +38,6 @@ final class PartOneSolution {
               throw new IllegalStateException("should not get here");
             })
         .build();
-  }
-
-  private static List<Long> toLongList(List<String> strings) {
-    return strings.stream().map(Long::parseLong).collect(Collectors.toList());
   }
 
   private PartOneSolution() {}

@@ -36,7 +36,7 @@ public abstract class Solution<E> {
     logger.info("solution for day " + dayNumber() + ", part " + part() + ": " + solution());
   }
 
-  protected final E solution() {
+  public final E solution() {
     return solutionSupplier().get();
   }
 }
