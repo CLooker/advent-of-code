@@ -1,4 +1,4 @@
-package com.clooker.solution.day.nine;
+package com.clooker.solution.day.ten;
 
 import com.clooker.solution.common.Solution;
 import com.clooker.solution.common.Utils;
@@ -9,13 +9,17 @@ import java.util.stream.Collectors;
 
 final class Solutions {
 
-  private static final List<Long> input =
-      Utils.parseInput(Paths.get("src", "main", "resources", "9.input.txt"))
+  static final List<Long> input =
+      Utils.parseInput(Paths.get("src", "main", "resources", "10.input.txt"))
           .map(Long::parseLong)
           .collect(Collectors.toList());
 
   public static void main(String[] args) {
-    List.of(PartOneSolution.solution(input, 25), PartTwoSolution.solution(input, 25))
+    List.of(
+      PartOneSolution.solution(input)
+//      ,
+//      PartTwoSolution.solution(input, 25)
+    )
         .forEach(Solution::logSolution);
   }
 }
