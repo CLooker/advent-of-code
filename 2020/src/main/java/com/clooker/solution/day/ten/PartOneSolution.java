@@ -17,23 +17,18 @@ final class PartOneSolution {
         .part(Solution.Part.ONE)
         .solutionSupplier(
             () -> {
-              final List<Long> jolts =
+              final List<JoltageAdapter> joltageAdapters = joltageAdapters(input);
+
+              final List<Joltage> joltagesToAdapt =
                   Stream.concat(Stream.of(0L), input.stream())
                       .sorted()
+                      .map(jolts -> Joltage.builder().jolts(jolts).build())
                       .collect(Collectors.toList());
-
-              final List<Joltage> joltages = Joltages.of(jolts);
-
-              final List<JoltageAdapter> joltageAdaptersWithoutDevice = JoltageAdapters.from(input);
-
-              final List<JoltageAdapter> joltageAdapters =
-                  JoltageAdapters.of(
-                      joltageAdaptersWithoutDevice, Device.from(joltageAdaptersWithoutDevice));
 
               final Set<JoltageAdapter> matches = new HashSet<>();
               final List<Long> joltsDifferences = new ArrayList<>();
 
-              joltages.forEach(
+              joltagesToAdapt.forEach(
                   joltage -> {
                     final JoltageAdapter match =
                         joltageAdapters.stream()
@@ -59,6 +54,13 @@ final class PartOneSolution {
               return onesCount * threesCount;
             })
         .build();
+  }
+
+  static List<JoltageAdapter> joltageAdapters(List<Long> joltsList) {
+    final List<JoltageAdapter> joltageAdaptersWithoutDevice = JoltageAdapters.from(joltsList);
+
+    return JoltageAdapters.of(
+        joltageAdaptersWithoutDevice, Device.from(joltageAdaptersWithoutDevice));
   }
 
   private PartOneSolution() {}
