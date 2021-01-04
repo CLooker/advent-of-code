@@ -8,6 +8,8 @@ import java.util.List;
 @Value.Style(typeImmutable = "*VO")
 interface Device {
 
+  JoltageAdapter joltageAdapter();
+
   static DeviceVO.Builder builder() {
     return DeviceVO.builder();
   }
@@ -20,10 +22,8 @@ interface Device {
             .map(jolts -> Joltage.builder().jolts(jolts + 3).build())
             .orElse(null);
 
-    final var joltageAdapter = JoltageAdapters.builder().rating(joltage).build();
+    final var joltageAdapter = JoltageAdapter.builder().rating(joltage).build();
 
     return builder().joltageAdapter(joltageAdapter).build();
   }
-
-  JoltageAdapter joltageAdapter();
 }

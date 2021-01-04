@@ -14,7 +14,7 @@ final class PartOneSolutionTest {
       joltage_adapter_output_returns_optional_wrapping_its_rating_when_input_is_within_less_than_3() {
     final Joltage rating = Joltage.builder().jolts(10L).build();
 
-    final var joltageAdapter = JoltageAdapters.builder().rating(rating).build();
+    final var joltageAdapter = JoltageAdapter.builder().rating(rating).build();
 
     final Joltage lessThan3FromRating = Joltage.builder().jolts(rating.jolts() - 3).build();
 
@@ -26,7 +26,7 @@ final class PartOneSolutionTest {
       joltage_adapter_output_returns_optional_wrapping_null_when_input_is_not_within_less_than_3() {
     final Joltage rating = Joltage.builder().jolts(10L).build();
 
-    final var joltageAdapter = JoltageAdapters.builder().rating(rating).build();
+    final var joltageAdapter = JoltageAdapter.builder().rating(rating).build();
 
     final Joltage lessThan4FromRating = Joltage.builder().jolts(rating.jolts() - 4).build();
 
@@ -36,19 +36,19 @@ final class PartOneSolutionTest {
   @Test
   void device_wraps_joltage_adapter_that_is_3_more_than_max_of_input() {
     final JoltageAdapter maxInput =
-        JoltageAdapters.builder().rating(Joltage.builder().jolts(10L).build()).build();
+        JoltageAdapter.builder().rating(Joltage.builder().jolts(10L).build()).build();
 
     final JoltageAdapter minInput =
-        JoltageAdapters.builder()
+        JoltageAdapter.builder()
             .rating(Joltage.builder().jolts(maxInput.rating().jolts() - 1).build())
             .build();
 
-    final List<JoltageAdapter> joltageAdapters = List.of(minInput, maxInput);
+    final List<JoltageAdapter> joltageAdapter = List.of(minInput, maxInput);
 
-    final var device = Device.from(joltageAdapters);
+    final var device = Device.from(joltageAdapter);
 
     final JoltageAdapter with3MoreThanMax =
-        JoltageAdapters.builder()
+        JoltageAdapter.builder()
             .rating(Joltage.builder().jolts(maxInput.rating().jolts() + 3).build())
             .build();
 

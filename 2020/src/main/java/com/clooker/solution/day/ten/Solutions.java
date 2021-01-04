@@ -15,11 +15,7 @@ final class Solutions {
           .collect(Collectors.toList());
 
   public static void main(String[] args) {
-    List.of(
-      PartOneSolution.solution(input)
-//      ,
-//      PartTwoSolution.solution(input, 25)
-    )
+    List.of(PartOneSolution.solution(input), PartTwoSolution.solution(input))
         .forEach(Solution::logSolution);
   }
 }
